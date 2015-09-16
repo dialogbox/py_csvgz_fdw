@@ -1,0 +1,28 @@
+# Gzipped CSV FDW
+
+```
+CREATE SERVER CSVGZ_SRV FOREIGN DATA WRAPPER MULTICORN OPTIONS (
+    WRAPPER 'csvgz_fdw.CSVGZForeignDataWrapper'
+);
+```
+
+```
+CREATE FOREIGN TABLE FDW_TEST (
+    A INTEGER,
+    B VARCHAR,
+    C TEXT,
+    D TEXT,
+    E TIMESTAMP
+) SERVER CSVGZ_SRV OPTIONS (
+    FILE_NAME '/opt/PostgreSQL/csv/test.csv.gz'
+);
+CREATE FOREIGN TABLE FDW_TEST2 (
+    A INTEGER,
+    B VARCHAR,
+    C TEXT,
+    D TEXT,
+    E TIMESTAMP
+) SERVER CSVGZ_SRV OPTIONS (
+    FILE_NAME '/opt/PostgreSQL/csv/test.csv'
+);
+```
